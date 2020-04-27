@@ -3,54 +3,37 @@ import { Item, Button, Label, Segment, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { IActivity } from '../../../app/models/activity';
 import { format } from 'date-fns';
+import ActivityListItemAttendees from './ActivityListItemAttendees';
 
 const ActivityListItem: React.FC<{ activity: IActivity }> = ({ activity }) => {
+  const host = activity.attendees.filter(x => x.isHost)[0];
   return (
-    // <Segment.Group>
-    //   <Segment>
-    //     <Item.Group>
-    //       <Item>
-    //         <Item.Image size="tiny" circular src="/assets/user.png" />
-    //         <Item.Content>
-    //           <Item.Header as="a">{activity.title}</Item.Header>
-    //           <Item.Description>Hosted by Bob</Item.Description>
-    //         </Item.Content>
-    //       </Item>
-    //     </Item.Group>
-    //   </Segment>
-    //   <Segment>
-    //     <Icon name="clock" /> {activity.date}
-    //     <Icon name="marker" /> {activity.venue}, {activity.city}
-    //   </Segment>
-    //   <Segment secondary>Attendees will go here</Segment>
-    //   <Segment clearing>
-    //     <span>{activity.description}</span>
-    //     <Button
-    //       as={Link}
-    //       to={`/activities/${activity.id}`}
-    //       floated="right"
-    //       content="View"
-    //       color="blue"
-    //     />
-    //   </Segment>
-    //   <span />
-    // </Segment.Group>
-
     <Segment>
       <Item.Group divided>
         <Item>
-          <Item.Image size="tiny" src="/assets/user.png" />
+          <Item.Image size="tiny" src={host.image || '/assets/user.png'} />
           <Item.Content>
             <Item.Header as={Link} to={`/activities/${activity.id}`}>
               {activity.title}
             </Item.Header>
             <Item.Meta>
-              <span>Hosted by Bob</span>
+              <span>Hosted by {host.displayName}</span>
             </Item.Meta>
-            <Item.Description>
-              {activity.description}
-            </Item.Description>
             <Item.Extra>
+              {activity.isHost && (
+                <Label
+                  basic
+                  color="orange"
+                  content="Hosting"
+                />
+              )}
+              {activity.isGoing && !activity.isHost && (
+                <Label
+                  basic
+                  color="green"
+                  content="Going"
+                />
+              )}
               <Label>
                 <Icon name="clock" /> {format(activity.date, 'h:mm a')}
               </Label>
@@ -61,8 +44,11 @@ const ActivityListItem: React.FC<{ activity: IActivity }> = ({ activity }) => {
           </Item.Content>
         </Item>
       </Item.Group>
-      <Item.Group secondary="true">Attendees will go here</Item.Group>
       <Item.Group>
+        <ActivityListItemAttendees attendees={activity.attendees} />
+      </Item.Group>
+      <Item.Group>
+        <span>{activity.description}</span>
         <Button
           as={Link}
           to={`/activities/${activity.id}`}
@@ -72,7 +58,6 @@ const ActivityListItem: React.FC<{ activity: IActivity }> = ({ activity }) => {
         />
       </Item.Group>
     </Segment>
-    
   );
 };
 
