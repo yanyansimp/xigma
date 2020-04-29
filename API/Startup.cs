@@ -27,6 +27,7 @@ using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using AutoMapper;
+using Infrastructure.Photos;
 
 namespace API
 {
@@ -102,9 +103,13 @@ namespace API
 
             // JWT Generator
             services.AddScoped<IJwtGenerator, JwtGenerator>();
-
             // User Accessor
             services.AddScoped<IUserAccessor, UserAccessor>();
+            // Photo Accessor
+            services.AddScoped<IPhotoAccessor, PhotoAccessor>();
+
+            // Cloudinary Configuration
+            services.Configure<CloudinarySettings>(Configuration.GetSection("Cloudinary"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
