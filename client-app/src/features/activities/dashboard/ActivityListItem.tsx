@@ -11,28 +11,28 @@ const ActivityListItem: React.FC<{ activity: IActivity }> = ({ activity }) => {
     <Segment>
       <Item.Group divided>
         <Item>
-          <Item.Image size="tiny" src={host.image || '/assets/user.png'} />
+          <Item.Image
+            size="tiny"
+            circular
+            src={host.image || '/assets/user.png'}
+            style={{marginBottom: 3}}
+          />
           <Item.Content>
             <Item.Header as={Link} to={`/activities/${activity.id}`}>
               {activity.title}
             </Item.Header>
             <Item.Meta>
-              <span>Hosted by {host.displayName}</span>
+              <span>
+                Hosted by
+                <Link to={`/profile/${host.username}`}> {host.displayName}</Link>
+              </span>
             </Item.Meta>
             <Item.Extra>
               {activity.isHost && (
-                <Label
-                  basic
-                  color="orange"
-                  content="Hosting"
-                />
+                <Label basic color="orange" content="Hosting" />
               )}
               {activity.isGoing && !activity.isHost && (
-                <Label
-                  basic
-                  color="green"
-                  content="Going"
-                />
+                <Label basic color="green" content="Going" />
               )}
               <Label>
                 <Icon name="clock" /> {format(activity.date, 'h:mm a')}
