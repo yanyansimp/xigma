@@ -11,7 +11,7 @@ export const NavBar: React.FC = () => {
   return (
     <Menu fixed='top' inverted>
       <Container>
-        <Menu.Item header as={NavLink} exact to='/'>
+        <Menu.Item as={NavLink} exact to='/'>
           <img
             src='/assets/logop.png'
             alt='logo'

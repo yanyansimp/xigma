@@ -26,7 +26,7 @@ const HomePage = () => {
             alt="logo"
             style={{ marginBottom: 12, width: "30px"}}
           /> */}
-          Kiri
+          Xians
         </Header>
         {isLoggedIn && user ? (
           <Fragment>
