@@ -7,25 +7,25 @@ Rheyan Keneth B. Pahuyo - Backend Developer
 
 1. Clone the project by running terminal. Go to the directory and clone the project by running
 
-git clone https://github.com/yanyansimp/xigma.git
+> git clone https://github.com/yanyansimp/xigma.git
 
 2. After the project has been successfully cloned, run the npm install at the client-app
 
 > cd client-app
 
-npm install
+> npm install
 
 3. At the project level run dotnet restore
 
 > cd xigma
 
-dotnet restore
+> dotnet restore
 
 4. Create a user-secrets on the API level
 
 > cd API
 
-dotnet user-secrets set "TokenKey" "super secret key"
+> dotnet user-secrets set "TokenKey" "super secret key"
 
 5. At the API level create appsettings.json
 
@@ -47,12 +47,12 @@ Paste this configuration
 
 > cd client-app
 
-npm start
+> npm start
 
 7. Run dotnet watch run at API
 
 > cd API
 
-dotnet watch run
+> dotnet watch run
 
 Happy Coding!
