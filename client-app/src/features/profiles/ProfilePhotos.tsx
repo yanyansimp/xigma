@@ -14,6 +14,7 @@ const ProfilePhotos = () => {
                     <Image src={photo.url} />
                 </Card>
             ))}
+        
             </Card.Group>
         </Tab.Pane>
     )

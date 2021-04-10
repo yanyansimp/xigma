@@ -36,10 +36,24 @@ body {
   font-weight: normal;
 }
 
-.masthead h2 {
-  font-size: 1.7em;
-  font-weight: normal;
+ .ui.inverted.button{
+  margin-top: 0.5em;
+  background-color: lightgrey;
+  color: black;
+} 
+  
+.log2{
+  
+  width: 252px;
+  height: 294px;
+  border-radius: 8px;
+  
 }
+
+
+
+
+
 
 /*end home page styles*/
 

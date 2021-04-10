@@ -17,16 +17,13 @@ const HomePage = () => {
   const { isLoggedIn, user } = rootStore.userStore;
   const {openModal} = rootStore.modalStore;
   return (
+    
     <Segment inverted textAlign="center" vertical className="masthead">
+      <div></div>
       <Container text>
         <Header as="h1" inverted>
-          {/* <Image
-            size="massive"
-            src="/assets/logo.png"
-            alt="logo"
-            style={{ marginBottom: 12, width: "30px"}}
-          /> */}
-          Xians
+          
+          Welcome
         </Header>
         {isLoggedIn && user ? (
           <Fragment>
@@ -40,15 +37,27 @@ const HomePage = () => {
             </Button>
           </Fragment>
         ) : (
+          <body className="log2" color="yellow">
           <Fragment>
-            <Header as="h2" inverted content="Welcome to Kiri" />
+            
+             <Header as="h2" inverted content="" />
+            <Image class="ui mini image"
+            src="/assets/sigmalogoo.png"
+            alt="logo"
+            centered
+            style={{ marginBottom: 12, width: "200px",}}
+          />
             <Button onClick={() => openModal(<LoginForm />)} size="huge" inverted>
               Login
             </Button>
-            <Button onClick={() => openModal(<RegisterForm />)} size="huge" inverted>
+            <Button onClick={() => openModal(<RegisterForm />)} size="huge" inverted
+            style={{backgroundcolor: <div id="fffff"></div>,}}
+            >
               Register
             </Button>
+            
           </Fragment>
+          </body>
         )}
       </Container>
     </Segment>

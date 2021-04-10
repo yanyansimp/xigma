@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Menu, Container, Button, Dropdown, Image } from 'semantic-ui-react';
+import { Menu, Container, Button, Dropdown, Image, Label, Input } from 'semantic-ui-react';
 import { observer } from 'mobx-react-lite';
 import { NavLink, Link } from 'react-router-dom';
 import { RootStoreContext } from '../../app/stores/rootStore';
@@ -9,27 +9,44 @@ export const NavBar: React.FC = () => {
   const { user, logout } = rootStore.userStore;
 
   return (
-    <Menu fixed='top' inverted>
+    
+        <Menu fixed='top' inverted>
       <Container>
         <Menu.Item as={NavLink} exact to='/'>
           <img
-            src='/assets/logop.png'
+          src='/assets/sigmalogoo.png'
             alt='logo'
-            style={{ marginRight: '10px' }}
+            style={{ marginRight:'5px', width: "40px", float: 'left'}}
           />
-          <span>Pregiato</span>
+          <label style={{ marginTop:'15px', float:'right'}} > SIGMA XI</label>
+
         </Menu.Item>
-        <Menu.Item name='Activities' as={NavLink} to='/activities' />
-        <Menu.Item>
-          <Button
+        {/* <Label name='SIGMA XI'>SIGMA XI</Label> */}
+        
+        <Menu.Item 
+            name='Activities' 
+            as={NavLink} to='/activities' 
+            positive content='Activity' /> 
+        {/* <Button name='Activities' as={NavLink} to='/activities' >Activity</Button></Menu.Item> */}
+        <Menu.Item
             as={NavLink}
             to='/createActivity'
             positive
             content='Create Activity'
-          />
+          >
         </Menu.Item>
+        
         {user && (
           <Menu.Item position='right'>
+           <Menu.Item>
+              <Input icon='search' placeholder='Search...' style={{ width:'500px'}}/>
+            </Menu.Item> 
+              <Menu.Item>
+              <Image avatar src={user.image || '/assets/mess2.png'} />
+            </Menu.Item>
+            <Menu.Item>
+              <Image avatar src={user.image || '/assets/bell2.png'} />
+            </Menu.Item>
             <Image avatar spaced='right' src={user.image || '/assets/user.png'} />
             <Dropdown pointing='top right' text={user.displayName}>
               <Dropdown.Menu>
