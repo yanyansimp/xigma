@@ -50,11 +50,11 @@ const HomePage = () => {
             <Button onClick={() => openModal(<LoginForm />)} size="huge" inverted>
               Login
             </Button>
-            <Button onClick={() => openModal(<RegisterForm />)} size="huge" inverted
+            {/* <Button onClick={() => openModal(<RegisterForm />)} size="huge" inverted
             style={{backgroundcolor: <div id="fffff"></div>,}}
             >
               Register
-            </Button>
+            </Button> */}
             
           </Fragment>
           </body>

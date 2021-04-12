@@ -3,10 +3,12 @@ import { Menu, Container, Button, Dropdown, Image, Label, Input } from 'semantic
 import { observer } from 'mobx-react-lite';
 import { NavLink, Link } from 'react-router-dom';
 import { RootStoreContext } from '../../app/stores/rootStore';
+import Addmem from '../user/addmembers';
 
 export const NavBar: React.FC = () => {
   const rootStore = useContext(RootStoreContext);
   const { user, logout } = rootStore.userStore;
+  const {openModal} = rootStore.modalStore;
 
   return (
     
@@ -18,7 +20,7 @@ export const NavBar: React.FC = () => {
             alt='logo'
             style={{ marginRight:'5px', width: "40px", float: 'left'}}
           />
-          <label style={{ marginTop:'15px', float:'right'}} > SIGMA XI</label>
+          <label style={{ marginTop:'15px', float:'right'}} >XIANS</label>
 
         </Menu.Item>
         {/* <Label name='SIGMA XI'>SIGMA XI</Label> */}
@@ -41,8 +43,13 @@ export const NavBar: React.FC = () => {
            <Menu.Item>
               <Input icon='search' placeholder='Search...' style={{ width:'500px'}}/>
             </Menu.Item> 
-              <Menu.Item>
-              <Image avatar src={user.image || '/assets/mess2.png'} />
+              <Menu.Item>             
+              <Image 
+              onClick={() => openModal(<Addmem />)}
+              
+                avatar src={user.image || '/assets/add2.png'} 
+                
+              />
             </Menu.Item>
             <Menu.Item>
               <Image avatar src={user.image || '/assets/bell2.png'} />
