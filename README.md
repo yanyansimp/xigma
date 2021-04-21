@@ -29,7 +29,7 @@ Rheyan Keneth B. Pahuyo - Backend Developer
 
 5. At the API level create appsettings.json
 
-Paste this configuration
+Paste this configuration and save
 
 {
 "ConnectionStrings": {
