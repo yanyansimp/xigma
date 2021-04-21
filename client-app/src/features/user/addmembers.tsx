@@ -7,7 +7,7 @@ const options =[
     {key: 'o', text: 'Other', value: 'other'},
 ]
 
-const Addmember = () => (
+const Addmembers = () => (
     
   <Form>
     <Label style={{marginLeft:'6.5em'}} size='huge'>MEMBERSHIP REGISTRATION </Label> 
@@ -60,4 +60,4 @@ const Addmember = () => (
   
 )
 
-export default Addmember;
+export default Addmembers;

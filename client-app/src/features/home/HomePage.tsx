@@ -21,10 +21,6 @@ const HomePage = () => {
     <Segment inverted textAlign="center" vertical className="masthead">
       <div></div>
       <Container text>
-        <Header as="h1" inverted>
-          
-          Welcome
-        </Header>
         {isLoggedIn && user ? (
           <Fragment>
             <Header
