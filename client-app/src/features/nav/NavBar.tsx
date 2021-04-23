@@ -15,14 +15,20 @@ export const NavBar: React.FC = () => {
       <Container>
         <Menu.Item as={NavLink} exact to='/'>
           <img
-          src='/assets/sigmalogoo.png'
+            src='/assets/sigmalogoo.png'
             alt='logo'
             style={{ marginRight:'5px', width: "40px", float: 'left'}}
           />
-          <label style={{ marginTop:'15px', float:'right'}} >XIANS SIGMA XI FRATERNITY & SORORITY</label>
+          
+          {/* Harb ako lang ni gitanggal ang inline css niya */}
+          {/* <label style={{ marginTop:'15px', float:'right'}} >XIANS SIGMA XI FRATERNITY & SORORITY</label> */}
+          
+          <label>XIANS SIGMA XI FRATERNITY & SORORITY</label>
 
         </Menu.Item>
-        {/* <Label name='SIGMA XI'>SIGMA XI</Label> */}
+
+          {/* Para asa ni? haha */}
+          {/* <Label name='SIGMA XI'>SIGMA XI</Label> */}
         
         <Menu.Item 
             name='Activities' 
