@@ -33,7 +33,7 @@ const HomePage = () => {
             </Button>
           </Fragment>
         ) : (
-          <body className="log2" color="yellow">
+          <body className="log2">
           <Fragment>
             
              <Header as="h2" inverted content="" />

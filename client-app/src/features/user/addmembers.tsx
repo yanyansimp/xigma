@@ -8,11 +8,14 @@ const options =[
 ]
 
 const Addmembers = () => (
-    
+  <div className="Memform1">
+  
   <Form>
-    <Label style={{marginLeft:'6.5em'}} size='huge'>MEMBERSHIP REGISTRATION </Label> 
-    <Form.Group style={{marginTop: '2em'}} widths='equal'>
-      <Form.Field style={{marginBottom: '0.5em'}}>
+  <div className="label1">
+    <label style={{marginLeft:'6.5em', fontSize:'1.8em', marginTop:'0.8em'}}>MEMBERSHIP REGISTRATION </label> 
+  </div>
+    <Form.Group style={{marginTop: '2em', marginLeft:'0.5em', marginRight:'0.5em'}} widths='equal'>
+      <Form.Field style={{marginBottom: '0.5em' }}>
         Last Name
         <Input style={{marginBottom: '0.5em' , marginTop: '0.5em'}} placeholder='Last Name'  />
         First Name
@@ -23,7 +26,7 @@ const Addmembers = () => (
         <Input style={{marginBottom: '0.5em', marginTop: '0.5em' }} placeholder='Home Address'/>
       </Form.Field>
     </Form.Group>
-    <Form.Group widths='equal'>
+    <Form.Group widths='equal'style={{marginLeft:'0.5em',marginRight:'0.5em'}}>
         <Form.Input fluid label='Blood Type' placeholder='Blood Type'/>
         <Form.Input fluid label='Contact Number' placeholder='Contact Number'/>
         <Form.Select 
@@ -34,30 +37,39 @@ const Addmembers = () => (
     </Form.Group>
 
     
-    <Form.Group widths='equal'>
+    <Form.Group widths='equal' style={{marginLeft:'0.5em',marginRight:'0.5em'}}>
             Chapter Name
-            <Input style={{marginBottom: '0.5em'}} placeholder='Chapter Name'/>
+            <Input style={{marginBottom: '0.5em', width:'43.5em', marginLeft:'0.5em'}} placeholder='Chapter Name'/>
+          </Form.Group>
+    <Form.Group  style={{marginLeft:'0.5em',marginRight:'0.5em', }}>
             School Name
-            <Input style={{marginBottom: '0.5em'}} placeholder='School Name'/>
+            <Input style={{marginBottom: '0.5em', width:'43.5em', marginLeft:'1em'}} placeholder='School Name'/>
     </Form.Group>
     
-    <Form.Group style={{marginTop: '0.5em'}}>
-    <Form.Input fluid label='Date Year Survive' placeholder='Date Survive'/>
-        <Form.Input fluid label='Member Control No.' placeholder='Member Control No.'/>
+    <Form.Group style={{marginTop: '0.5em' , marginLeft:'0.5em',marginRight:'0.5em'}}>
+      Date Year Survive
+      <Input style={{marginBottom: '0.5em', width:'15em', marginLeft:'0.5em', marginRight:'0.7em'}} placeholder='Date Survive'/>
+      Member Control No.
+      <Input style={{marginBottom: '0.5em', width:'16.5em', marginLeft:'0.5em', marginRight:'0.5em'}} placeholder='Member Control No.'/>
+    
     </Form.Group>
-    <Form.Group widths='equal' style={{marginBottom: '0.5em'}}>
+    <Form.Group style={{marginBottom: '0.5em', marginLeft:'0.5em'}}>
             Regional Grand Chancellor Name
-            <Input style={{marginBottom: '0.5em' , marginTop: '0.5em'}} placeholder='Regional Grand Chancellor Name'/>
+            <Input style={{marginBottom: '0.5em', width:'35em', marginRight:'0.5em', marginLeft:'0.5em'}} placeholder='Regional Grand Chancellor Name'/>
+    </Form.Group>
+    <Form.Group style={{marginBottom: '0.5em', marginLeft:'0.5em'}}>
             Grand Chancellor Name
-            <Input style={{marginTop: '0.5em'}} placeholder='Grand Chancellor Name'/>
+            <Input style={{marginLeft: '0.5em', marginRight:'0.5em', width:'40em'}} placeholder='Grand Chancellor Name'/>
     </Form.Group>
 
-    <Form.Group center style={{ marginTop:'2em', marginLeft: '15em', }}>
+    <Form.Group center style={{ marginTop:'2em', marginLeft: '20em' }}>
     <Form.Button control='button'> Submit</Form.Button>
     <Form.Button control='button'> Cancel</Form.Button>
     </Form.Group>
+    
   </Form>
   
+  </div>
 )
 
 export default Addmembers;
