@@ -23,7 +23,8 @@ body {
 
 .masthead h1.ui.header {
   font-size: 4em;
-  font-weight: normal;
+  font-weight: bolder;
+  text-align: center;
 }
 
  .ui.inverted.button{

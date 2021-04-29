@@ -11,9 +11,9 @@ const Addmembers = () => (
   <div className="Memform1">
   
   <Form>
-  <div className="label1">
-    <label style={{marginLeft:'6.5em', fontSize:'1.8em', marginTop:'0.8em'}}>MEMBERSHIP REGISTRATION </label> 
-  </div>
+  
+    <Label color='red' style={{marginLeft:'6.5em', fontSize:'1.8em', marginTop:'1em'}}>MEMBERSHIP REGISTRATION </Label> 
+  
     <Form.Group style={{marginTop: '2em', marginLeft:'0.5em', marginRight:'0.5em'}} widths='equal'>
       <Form.Field style={{marginBottom: '0.5em' }}>
         Last Name
@@ -38,12 +38,12 @@ const Addmembers = () => (
 
     
     <Form.Group widths='equal' style={{marginLeft:'0.5em',marginRight:'0.5em'}}>
+    <Form.Field style={{marginBottom: '0.5em' }}>
             Chapter Name
-            <Input style={{marginBottom: '0.5em', width:'43.5em', marginLeft:'0.5em'}} placeholder='Chapter Name'/>
-          </Form.Group>
-    <Form.Group  style={{marginLeft:'0.5em',marginRight:'0.5em', }}>
+            <Input style={{marginTop:'0.5em',marginBottom: '0.5em', width:'49em', marginLeft:'0.5em', marginRight:'1em'}} placeholder='Chapter Name'/>
             School Name
-            <Input style={{marginBottom: '0.5em', width:'43.5em', marginLeft:'1em'}} placeholder='School Name'/>
+            <Input style={{marginTop:'0.5em', marginBottom: '0.5em', width:'49em', marginLeft:'0.5em'}} placeholder='School Name'/>
+    </Form.Field>
     </Form.Group>
     
     <Form.Group style={{marginTop: '0.5em' , marginLeft:'0.5em',marginRight:'0.5em'}}>
@@ -54,17 +54,19 @@ const Addmembers = () => (
     
     </Form.Group>
     <Form.Group style={{marginBottom: '0.5em', marginLeft:'0.5em'}}>
+    <Form.Field style={{marginBottom: '0.5em' }}>
             Regional Grand Chancellor Name
-            <Input style={{marginBottom: '0.5em', width:'35em', marginRight:'0.5em', marginLeft:'0.5em'}} placeholder='Regional Grand Chancellor Name'/>
-    </Form.Group>
-    <Form.Group style={{marginBottom: '0.5em', marginLeft:'0.5em'}}>
+            <Input style={{marginTop:'0.5em',marginBottom: '0.5em', width:'49em', marginRight:'0.5em', marginLeft:'0.5em'}} placeholder='Regional Grand Chancellor Name'/>
             Grand Chancellor Name
-            <Input style={{marginLeft: '0.5em', marginRight:'0.5em', width:'40em'}} placeholder='Grand Chancellor Name'/>
+            <Input style={{marginTop:'0.5em', marginLeft: '0.5em', marginRight:'0.5em', width:'49em'}} placeholder='Grand Chancellor Name'/>
+    </Form.Field>
     </Form.Group>
 
     <Form.Group center style={{ marginTop:'2em', marginLeft: '20em' }}>
+    
     <Form.Button control='button'> Submit</Form.Button>
     <Form.Button control='button'> Cancel</Form.Button>
+    
     </Form.Group>
     
   </Form>

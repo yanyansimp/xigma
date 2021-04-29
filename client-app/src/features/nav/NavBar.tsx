@@ -11,7 +11,7 @@ export const NavBar: React.FC = () => {
 
   return (
     
-        <Menu fixed='top' inverted>
+        <Menu fixed='top' inverted color='red'>
           <img
             src='/assets/sigmalogoo.png'
             alt='logo'
@@ -19,19 +19,10 @@ export const NavBar: React.FC = () => {
           />
            <label style={{color:'white', marginTop:'30px'}}>XIANS SIGMA XI</label>
       <Container>
-        <Menu.Item content='Home'>
-          
-          
-          {/* Harb ako lang ni gitanggal ang inline css niya */}
-          {/* <label style={{ marginTop:'15px', float:'right'}} >XIANS SIGMA XI FRATERNITY & SORORITY</label> */}
-          
-         
-
+        <Menu.Item as={Link} to='/homeAdmin1'>
+              Home
         </Menu.Item>
 
-          {/* Para asa ni? haha */}
-          {/* <Label name='SIGMA XI'>SIGMA XI</Label> */}
-        
         <Menu.Item 
             name='Activities' 
             as={NavLink} to='/activities' 
@@ -60,7 +51,7 @@ export const NavBar: React.FC = () => {
                   <Dropdown.Menu>
                   <Dropdown.Item
                   as={Link}
-                  to='/user'
+                  to='/addmembers'
                   text='Members Registration'
                 />
                 <Dropdown.Item
@@ -71,9 +62,9 @@ export const NavBar: React.FC = () => {
                 </Dropdown.Menu>
                 </Dropdown>
             </Menu.Item>
-            <Menu.Item>
+            {/* <Menu.Item>
               <Image avatar src={user.image || '/assets/bell2.png'} />
-            </Menu.Item>
+            </Menu.Item> */}
             <Image avatar spaced='right' src={user.image || '/assets/user.png'} />
             <Dropdown pointing='top right' text={user.displayName}>
               <Dropdown.Menu>
