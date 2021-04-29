@@ -2,8 +2,7 @@ This project is created in React.js and Asp.net Core 2.1
 
 Developed by
 Harvey S. Montanez - Frontend Developer
-Neljohn B. Genilza - Frontend Developer
-Rheyan Keneth B. Pahuyo - Backend Developer
+Rheyan Keneth B. Pahuyo - Frontend/Backend Developer
 
 1. Clone the project by running terminal. Go to the directory and clone the project by running
 
