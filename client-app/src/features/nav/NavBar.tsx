@@ -15,7 +15,7 @@ export const NavBar: React.FC = () => {
           <img
             src='/assets/sigmalogoo.png'
             alt='logo'
-            style={{marginTop:'15px',marginLeft:'10px' ,marginRight:'5px', height: '50px',width: "50px", float: 'left'}}
+            style={{marginTop:'15px',marginLeft:'10px' ,marginRight:'5px', height: '50px',width: "55px", float: 'left'}}
           />
            <label style={{color:'white', marginTop:'30px'}}>XIANS SIGMA XI</label>
       <Container>
