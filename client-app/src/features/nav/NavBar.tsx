@@ -11,30 +11,23 @@ export const NavBar: React.FC = () => {
 
   return (
     
-        <Menu fixed='top' inverted>
-      <Container>
-        <Menu.Item as={NavLink} exact to='/'>
+        <Menu fixed='top' inverted color='red'>
           <img
             src='/assets/sigmalogoo.png'
             alt='logo'
-            style={{ marginRight:'5px', width: "40px", float: 'left'}}
+            style={{marginTop:'15px',marginLeft:'10px' ,marginRight:'5px', height: '50px',width: "50px", float: 'left'}}
           />
-          
-          {/* Harb ako lang ni gitanggal ang inline css niya */}
-          {/* <label style={{ marginTop:'15px', float:'right'}} >XIANS SIGMA XI FRATERNITY & SORORITY</label> */}
-          
-          <label>XIANS SIGMA XI FRATERNITY & SORORITY</label>
-
+           <label style={{color:'white', marginTop:'30px'}}>XIANS SIGMA XI</label>
+      <Container>
+        <Menu.Item as={Link} to='/homeAdmin1'>
+              Home
         </Menu.Item>
 
-          {/* Para asa ni? haha */}
-          {/* <Label name='SIGMA XI'>SIGMA XI</Label> */}
-        
         <Menu.Item 
             name='Activities' 
             as={NavLink} to='/activities' 
             positive content='Activity' /> 
-        {/* <Button name='Activities' as={NavLink} to='/activities' >Activity</Button></Menu.Item> */}
+    
         {/* <Menu.Item
             as={NavLink}
             to='/createActivity'
@@ -69,9 +62,9 @@ export const NavBar: React.FC = () => {
                 </Dropdown.Menu>
                 </Dropdown>
             </Menu.Item>
-            <Menu.Item>
+            {/* <Menu.Item>
               <Image avatar src={user.image || '/assets/bell2.png'} />
-            </Menu.Item>
+            </Menu.Item> */}
             <Image avatar spaced='right' src={user.image || '/assets/user.png'} />
             <Dropdown pointing='top right' text={user.displayName}>
               <Dropdown.Menu>

@@ -19,6 +19,7 @@ import LoadingComponent from './LoadingComponent';
 import ModalContainer from '../common/modals/ModalContainer';
 import ProfilePage from '../../features/profiles/ProfilePage';
 import Addmembers from '../../features/user/addmembers';
+import HomeAdmin1 from '../../features/home/HomeAdmin1';
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   const rootStore = useContext(RootStoreContext);
@@ -50,9 +51,16 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
               <Switch>
                 <Route exact path='/activities' component={ActivityDashboard} />
                 <Route path='/activities/:id' component={ActivityDetails} />
+
+                <Route
+                  key={location.key}
+                  path='/homeAdmin1'
+                  component={HomeAdmin1}
+                  />
+
                 <Route 
                 key={location.key}
-                path='/user' 
+                path='/addmembers' 
                 component={Addmembers}
                 />
                 <Route
