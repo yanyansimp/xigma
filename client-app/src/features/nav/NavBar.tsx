@@ -58,7 +58,7 @@ export const NavBar: React.FC = () => {
                   <Dropdown.Menu>
                   <Dropdown.Item
                   as={Link}
-                  to='/addmembers'
+                  to='/user'
                   text='Members Registration'
                 />
                 <Dropdown.Item
