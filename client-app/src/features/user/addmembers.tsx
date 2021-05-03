@@ -60,6 +60,7 @@ const Addmembers = () => (
             Grand Chancellor Name
             <Input style={{marginTop:'0.5em', marginLeft: '0.5em', marginRight:'0.5em', width:'49em'}} placeholder='Grand Chancellor Name'/>
     </Form.Field>
+    <label> HAHAHHA </label>
     </Form.Group>
 
     <Form.Group center style={{ marginTop:'2em', marginLeft: '20em' }}>
@@ -68,6 +69,7 @@ const Addmembers = () => (
     <Form.Button control='button'> Cancel</Form.Button>
     
     </Form.Group>
+
     
   </Form>
   
