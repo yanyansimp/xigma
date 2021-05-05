@@ -20,11 +20,8 @@ import ModalContainer from '../common/modals/ModalContainer';
 import ProfilePage from '../../features/profiles/ProfilePage';
 import Addmembers from '../../features/user/addmembers';
 import HomeAdmin1 from '../../features/home/HomeAdmin1';
-<<<<<<< HEAD
 import MemberForm from '../../features/members/form/MemberForm';
-=======
 import MembersList from '../../features/profiles/MembersList';
->>>>>>> 225fa3b2f922ab68c82f43e39f1616ef078bf0f3
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   const rootStore = useContext(RootStoreContext);
