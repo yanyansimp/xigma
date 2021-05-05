@@ -4,7 +4,7 @@ body {
 
 /* .ui.inverted.top.fixed.menu {
   
-} */
+}  */
 
 /*home page styles*/
 
@@ -12,7 +12,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
- 
+  background-color: royalblue;
   /* height: 100vh; */
 }
 
@@ -24,6 +24,7 @@ body {
 .masthead h1.ui.header {
   font-size: 4em;
   font-weight: normal;
+  
 }
 
  .ui.inverted.button{
@@ -38,7 +39,8 @@ body {
   height: 294px;
   border-radius: 8px;
   margin-left: 15em;
-  
+  margin-bottom: 13.6em;
+  margin-top: 8em;
 }
 
 .Memform1{
@@ -48,6 +50,17 @@ body {
   height: auto;
   border-radius: 10px;
 }
+
+.ActivitySideBar2{
+    background-color: white;
+    height: auto;
+    width: auto;
+    border-radius: 8px;
+    margin-top: 20px;
+    
+}
+
+
 
 
 
