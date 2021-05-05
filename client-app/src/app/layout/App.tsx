@@ -20,6 +20,7 @@ import ModalContainer from '../common/modals/ModalContainer';
 import ProfilePage from '../../features/profiles/ProfilePage';
 import Addmembers from '../../features/user/addmembers';
 import HomeAdmin1 from '../../features/home/HomeAdmin1';
+import MemberForm from '../../features/members/form/MemberForm';
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   const rootStore = useContext(RootStoreContext);
@@ -61,7 +62,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
                 <Route 
                 key={location.key}
                 path='/addmembers' 
-                component={Addmembers}
+                component={MemberForm}
                 />
                 <Route
                   key={location.key}

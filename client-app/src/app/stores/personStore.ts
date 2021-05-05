@@ -77,10 +77,12 @@ export default class PersonStore {
     try {
       await agent.Persons.create(person);
       runInAction('creating membership', () => {
+        console.log(person);
         this.personRegistry.set(person.id, person);
         this.submitting = false;
       });
-      history.push(`/persons/${person.id}`);
+      toast.success('Successfully Saved.');
+      // history.push(`/persons/${person.id}`);
     } catch (error) {
       runInAction('creating membership error', () => {
         this.submitting = false;
@@ -111,24 +113,24 @@ export default class PersonStore {
   };
 
   @action deletePerson = async (
-      event: SyntheticEvent<HTMLButtonElement>,
-      id: string
-    ) => {
-        this.submitting = true;
-        this.target = event.currentTarget.name;
-        try {
-            await agent.Persons.delete(id);
-            runInAction('deleting member', () => {
-                this.personRegistry.delete(id);
-                this.submitting = false;
-                this.target = '';
-            })
-        } catch (error) {
-            runInAction('delete member error', () => {
-                this.submitting = false;
-                this.target = '';
-            })
-            console.log(error);
-        }
-  }
+    event: SyntheticEvent<HTMLButtonElement>,
+    id: string
+  ) => {
+    this.submitting = true;
+    this.target = event.currentTarget.name;
+    try {
+      await agent.Persons.delete(id);
+      runInAction('deleting member', () => {
+        this.personRegistry.delete(id);
+        this.submitting = false;
+        this.target = '';
+      });
+    } catch (error) {
+      runInAction('delete member error', () => {
+        this.submitting = false;
+        this.target = '';
+      });
+      console.log(error);
+    }
+  };
 }

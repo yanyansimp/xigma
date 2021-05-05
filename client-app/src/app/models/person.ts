@@ -9,10 +9,11 @@ export interface IPerson {
   gender: string;
   bloodType: string;
   schoolName: string;
+  chapter: string;
   address: string;
   contactNumber: string;
   contactPerson: string;
-  dateSurvived?: Date;
+  dateSurvived: string;
   regionalChansellor: string;
   grandChansellor: string;
 
@@ -50,9 +51,10 @@ export class PersonFormValues implements IPersonFormValues {
   bloodType: string = '';
   schoolName: string = '';
   address: string = '';
+  chapter: string = '';
   contactNumber: string = '';
   contactPerson: string = '';
-  dateSurvived?: Date = undefined;
+  dateSurvived: string = '';
   regionalChansellor: string = '';
   grandChansellor: string = '';
 

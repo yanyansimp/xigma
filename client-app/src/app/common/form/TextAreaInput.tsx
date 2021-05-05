@@ -10,12 +10,14 @@ const TextAreaInput: React.FC<IProps> = ({
   input,
   width,
   rows,
+  label,
   placeholder,
   meta: { touched, error }
 }) => {
   return (
     <Form.Field error={touched && !!error} width={width}>
-      <textarea rows={rows} {...input} placeholder={placeholder} />
+      <Form.TextArea rows={rows} {...input} placeholder={placeholder} label={label} />
+      {/* <textarea rows={rows} {...input} placeholder={placeholder} /> */}
       {touched && error && (
         <Label basic color="red">
           {error}

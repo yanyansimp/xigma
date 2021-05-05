@@ -13,11 +13,13 @@ namespace Domain
         public string Suffix { get; set; }
         public string Gender { get; set; }
         public string BloodType { get; set; }
+        public string Chapter { get; set; }
         public string SchoolName { get; set; }
         public string Address { get; set; }
         public string ContactNumber { get; set; }
         public string ContactPerson { get; set; }
-        public DateTime DateSurvived { get; set; }
+        public string ContactPersonNumber { get; set; }
+        public string DateSurvived { get; set; }
         public string RegionalChansellor { get; set; }
         public string GrandChansellor { get; set; }
         public virtual Photo Photo { get; set; }

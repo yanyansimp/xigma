@@ -21,11 +21,13 @@ namespace Application.Persons
             public string Suffix { get; set; }
             public string Gender { get; set; }
             public string BloodType { get; set; }
+            public string Chapter { get; set; }
             public string SchoolName { get; set; }
             public string Address { get; set; }
             public string ContactNumber { get; set; }
             public string ContactPerson { get; set; }
-            public DateTime DateSurvived { get; set; }
+            public string ContactPersonNumber { get; set; }
+            public string DateSurvived { get; set; }
             public string RegionalChansellor { get; set; }
             public string GrandChansellor { get; set; }
             
@@ -42,6 +44,7 @@ namespace Application.Persons
                 RuleFor(x => x.Gender).NotEmpty();
                 RuleFor(x => x.BloodType).NotEmpty();
                 RuleFor(x => x.SchoolName).NotEmpty();
+                RuleFor(x => x.Chapter).NotEmpty();
                 RuleFor(x => x.Address).NotEmpty();
                 RuleFor(x => x.ContactNumber).NotEmpty();
                 RuleFor(x => x.ContactPerson).NotEmpty();
@@ -74,10 +77,12 @@ namespace Application.Persons
                     Suffix = request.Suffix,
                     Gender = request.Gender,
                     BloodType = request.BloodType,
+                    Chapter = request.Chapter,
                     SchoolName = request.SchoolName,
                     Address = request.Address,
                     ContactNumber = request.ContactNumber,
                     ContactPerson = request.ContactPerson,
+                    ContactPersonNumber = request.ContactPersonNumber,
                     DateSurvived = request.DateSurvived,
                     RegionalChansellor = request.RegionalChansellor,
                     GrandChansellor = request.GrandChansellor

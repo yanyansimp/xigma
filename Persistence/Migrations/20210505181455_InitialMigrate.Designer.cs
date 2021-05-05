@@ -9,8 +9,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210420071152_PersonAdded")]
-    partial class PersonAdded
+    [Migration("20210505181455_InitialMigrate")]
+    partial class InitialMigrate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -105,13 +105,17 @@ namespace Persistence.Migrations
 
                     b.Property<string>("BloodType");
 
+                    b.Property<string>("Chapter");
+
                     b.Property<string>("ContactNumber");
 
                     b.Property<string>("ContactPerson");
 
+                    b.Property<string>("ContactPersonNumber");
+
                     b.Property<string>("ControlNumber");
 
-                    b.Property<DateTime>("DateSurvived");
+                    b.Property<string>("DateSurvived");
 
                     b.Property<string>("FirstName");
 

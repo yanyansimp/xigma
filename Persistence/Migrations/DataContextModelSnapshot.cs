@@ -103,13 +103,17 @@ namespace Persistence.Migrations
 
                     b.Property<string>("BloodType");
 
+                    b.Property<string>("Chapter");
+
                     b.Property<string>("ContactNumber");
 
                     b.Property<string>("ContactPerson");
 
+                    b.Property<string>("ContactPersonNumber");
+
                     b.Property<string>("ControlNumber");
 
-                    b.Property<DateTime>("DateSurvived");
+                    b.Property<string>("DateSurvived");
 
                     b.Property<string>("FirstName");
 
