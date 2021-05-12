@@ -1,10 +1,11 @@
 import React, { Fragment, useContext, useEffect } from 'react';
 import { Container } from 'semantic-ui-react';
 import { observer } from 'mobx-react-lite';
-import { Route,
+import {
+  Route,
   withRouter,
   RouteComponentProps,
-  Switch
+  Switch,
 } from 'react-router-dom';
 import NavBar from '../../features/nav/NavBar';
 import HomePage from '../../features/home/HomePage';
@@ -12,7 +13,7 @@ import ActivityDashboard from '../../features/activities/dashboard/ActivityDashb
 import ActivityForm from '../../features/activities/form/ActivityForm';
 import ActivityDetails from '../../features/activities/details/ActivityDetails';
 import NotFound from './NotFound';
-import {ToastContainer} from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import LoginForm from '../../features/user/LoginForm';
 import { RootStoreContext } from '../stores/rootStore';
 import LoadingComponent from './LoadingComponent';
@@ -21,12 +22,14 @@ import ProfilePage from '../../features/profiles/ProfilePage';
 import Addmembers from '../../features/user/addmembers';
 import HomeAdmin1 from '../../features/home/HomeAdmin1';
 import MemberForm from '../../features/members/form/MemberForm';
-import MembersList from '../../features/profiles/MembersList';
+import MembersList from '../../features/members/dashboard/MembersList';
+import { MemberDashboard } from '../../features/members/dashboard/MemberDashboard';
+import { MemberDetails } from '../../features/members/dashboard/MemberDetails';
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   const rootStore = useContext(RootStoreContext);
-  const {setAppLoaded, token, appLoaded} = rootStore.commonStore;
-  const {getUser} = rootStore.userStore;
+  const { setAppLoaded, token, appLoaded } = rootStore.commonStore;
+  const { getUser } = rootStore.userStore;
 
   useEffect(() => {
     if (token) {
@@ -36,14 +39,13 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
     }
   }, [getUser, setAppLoaded, token]);
 
-  if (!appLoaded) return <LoadingComponent content='Loading app..' />
-
+  if (!appLoaded) return <LoadingComponent content="Loading app.." />;
 
   return (
     <Fragment>
       <ModalContainer />
-      <Route exact path='/' component={HomePage} />
-      <ToastContainer position='bottom-right' />
+      <Route exact path="/" component={HomePage} />
+      <ToastContainer position="bottom-right" />
       <Route
         path={'/(.+)'}
         render={() => (
@@ -51,24 +53,29 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
             <NavBar />
             <Container style={{ marginTop: '8em' }}>
               <Switch>
-                <Route exact path='/activities' component={ActivityDashboard} />
-                <Route path='/activities/:id' component={ActivityDetails} />
+                <Route exact path="/activities" component={ActivityDashboard} />
+                <Route path="/activities/:id" component={ActivityDetails} />
+
+                {/* <Route exact path="/members" component={MemberDashboard} /> */}
 
                 <Route
                   key={location.key}
-                  path='/homeAdmin1'
+                  path="/homeAdmin1"
                   component={HomeAdmin1}
-                  />
-
-                <Route 
-                key={location.key}
-                path='/addmembers' 
-                component={MemberForm}
                 />
-                <Route 
-                key={location.key}
-                path='/MembersList' 
-                component={MembersList}
+
+                <Route exact path="/members" component={MemberDashboard} />
+
+                <Route
+                  key={location.key}
+                  path="/member/details"
+                  component={MemberDetails}
+                />
+
+                <Route
+                  key={location.key}
+                  path="/addMembers"
+                  component={MemberForm}
                 />
 
                 <Route
@@ -76,10 +83,11 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
                   path={['/createActivity', '/manage/:id']}
                   component={ActivityForm}
                 />
-                
 
-                <Route path='/profile/:username' component={ProfilePage} />
+                <Route path="/profile/:username" component={ProfilePage} />
+
                 {/* <Route path='/login' component={LoginForm} /> Will cater this later */}
+
                 <Route component={NotFound} />
               </Switch>
             </Container>

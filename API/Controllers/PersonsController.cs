@@ -11,14 +11,14 @@ namespace API.Controllers
 {
     public class PersonsController : BaseController
     {
-        // [HttpGet]
-        // public async Task<ActionResult<List<ActivityDto>>> List()
-        // {
-        //     return await Mediator.Send(new List.Query());
-        // }
+        [HttpGet]
+        public async Task<ActionResult<List<Person>>> List()
+        {
+            return await Mediator.Send(new List.Query());
+        }
 
         // [HttpGet("{id}")]
-        // public async Task<ActionResult<ActivityDto>> Details(Guid id)
+        // public async Task<ActionResult<Person>> Details(Guid id)
         // {
         //     return await Mediator.Send(new Details.Query{Id = id});
         // }

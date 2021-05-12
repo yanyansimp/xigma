@@ -1,4 +1,4 @@
-import { action, observable, runInAction } from 'mobx';
+import { action, observable, computed, runInAction } from 'mobx';
 import agent from '../api/agent';
 import { history } from '../..';
 import { IPerson } from '../models/person';
@@ -18,6 +18,23 @@ export default class PersonStore {
   @observable submitting = false;
   @observable target = '';
   @observable loading = false;
+
+  @computed get personsByName() {
+    //Sort by Control Number
+    return Array.from(this.personRegistry.values()).sort(
+      (a,b) => (a > b ? 1 : -1)
+    );
+  }
+
+  personSortByControlNo(persons: IPerson[]) {
+    // const sortedPersons = persons.sort(
+    //   (a, b) => a.controlNumber.length - b.controlNumber.length
+    // );
+    // return sortedPersons;
+    const sortedPersons = persons.sort();
+
+    return sortedPersons;
+  }
 
   //Load the list of members
   @action loadPersons = async () => {
@@ -80,6 +97,7 @@ export default class PersonStore {
         console.log(person);
         this.personRegistry.set(person.id, person);
         this.submitting = false;
+        this.clearPerson();
       });
       toast.success('Successfully Saved.');
       // history.push(`/persons/${person.id}`);
