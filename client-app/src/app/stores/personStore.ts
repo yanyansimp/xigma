@@ -1,10 +1,11 @@
-import { action, observable, computed, runInAction } from 'mobx';
+import { action, observable, computed, runInAction, toJS } from 'mobx';
 import agent from '../api/agent';
 import { history } from '../..';
 import { IPerson } from '../models/person';
 import { RootStore } from './rootStore';
 import { toast } from 'react-toastify';
 import { SyntheticEvent } from 'react';
+import { setPersonProps } from '../common/util/util';
 
 export default class PersonStore {
   rootStore: RootStore;
@@ -31,9 +32,8 @@ export default class PersonStore {
     //   (a, b) => a.controlNumber.length - b.controlNumber.length
     // );
     // return sortedPersons;
-    const sortedPersons = persons.sort();
-
-    return sortedPersons;
+    // const sortedPersons = 
+    return persons.sort();
   }
 
   //Load the list of members
@@ -60,12 +60,14 @@ export default class PersonStore {
     let person = this.getPerson(id);
     if (person) {
       this.person = person;
-      return person;
+      return toJS(person);
     } else {
       this.loadingInitial = true;
       try {
         person = await agent.Persons.details(id);
         runInAction('getting member', () => {
+          console.log(person); // remove this later
+          setPersonProps(person);
           this.person = person;
           this.personRegistry.set(person.id, person);
           this.loadingInitial = false;
@@ -120,7 +122,7 @@ export default class PersonStore {
         this.person = person;
         this.submitting = false;
       });
-      history.push(`/persons/${person.id}`);
+      history.push(`/members`);
     } catch (error) {
       runInAction('edit membership error', () => {
         this.submitting = false;

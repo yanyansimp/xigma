@@ -24,7 +24,7 @@ import HomeAdmin1 from '../../features/home/HomeAdmin1';
 import MemberForm from '../../features/members/form/MemberForm';
 import MembersList from '../../features/members/dashboard/MembersList';
 import { MemberDashboard } from '../../features/members/dashboard/MemberDashboard';
-import { MemberDetails } from '../../features/members/dashboard/MemberDetails';
+import MemberDetails from '../../features/members/details/MemberDetails';
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   const rootStore = useContext(RootStoreContext);
@@ -74,7 +74,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
 
                 <Route
                   key={location.key}
-                  path="/addMembers"
+                  path={['/addMembers', '/editMembers/:id']}
                   component={MemberForm}
                 />
 

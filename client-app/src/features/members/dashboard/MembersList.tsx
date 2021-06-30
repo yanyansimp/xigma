@@ -2,7 +2,7 @@ import { AnyARecord } from 'dns';
 import { observer } from 'mobx-react-lite';
 import React, { useContext } from 'react';
 import { Field } from 'react-final-form';
-import { Input, Table, Segment, Image } from 'semantic-ui-react';
+import { Input, Table, Segment, Image, Button, Icon } from 'semantic-ui-react';
 import { RootStoreContext } from '../../../app/stores/rootStore';
 import MembersListItem from './MembersListItem';
 
@@ -13,11 +13,20 @@ export const MembersList: React.FC = () => {
   return (
     <Table selectable striped>
       <Table.Header>
-        <Segment basic width={16}>
-          <Input action={{ icon: 'search' }} placeholder="Search..." />
-        </Segment>
-      </Table.Header>
-      <Table.Header>
+        <Table.Row>
+          <Table.HeaderCell colSpan="10">
+            <Button
+              floated="right"
+              icon
+              labelPosition="left"
+              primary
+              size="small"
+            >
+              <Icon name="user" /> Add Member
+            </Button>
+            <Input action={{ icon: 'search' }} placeholder="Search..." />
+          </Table.HeaderCell>
+        </Table.Row>
         <Table.Row>
           <Table.HeaderCell>Control No.</Table.HeaderCell>
           <Table.HeaderCell>Image</Table.HeaderCell>
@@ -28,12 +37,13 @@ export const MembersList: React.FC = () => {
           <Table.HeaderCell>Address</Table.HeaderCell>
           <Table.HeaderCell>Chapter</Table.HeaderCell>
           <Table.HeaderCell>Date Survived</Table.HeaderCell>
+          <Table.HeaderCell></Table.HeaderCell>
         </Table.Row>
       </Table.Header>
       <Table.Body>
-        {personsByName.map(person => 
-            <MembersListItem key={person.id} person={person} />
-        )}
+        {personsByName.map((person) => (
+          <MembersListItem key={person.id} person={person} />
+        ))}
       </Table.Body>
     </Table>
   );

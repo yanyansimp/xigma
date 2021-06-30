@@ -77,7 +77,7 @@ namespace API
             identityBuilder.AddEntityFrameworkStores<DataContext>();
             identityBuilder.AddSignInManager<SignInManager<AppUser>>();
             
-            // 
+            ///
             services.AddAuthorization(opt => 
             {
                 opt.AddPolicy("IsActivityHost", policy => 

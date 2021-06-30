@@ -4,7 +4,7 @@ export interface IPerson {
   lastName: string;
   firstName: string;
   middleName: string;
-  birthDate?: Date;
+  birthDate: Date;
   suffix: string;
   gender: string;
   bloodType: string;

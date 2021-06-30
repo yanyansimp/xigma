@@ -111,6 +111,7 @@ const ActivityForm: React.FC<RouteComponentProps<DetailParams>> = ({
                     value={activity.date}
                     component={DateInput}
                   />
+                  {console.log(typeof(activity.date))}
                   <Field
                     name="time"
                     width={8}

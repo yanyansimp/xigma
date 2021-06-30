@@ -1,5 +1,6 @@
 import { IUser } from "../../models/user";
 import { IActivity, IAttendee } from "../../models/activity";
+import { IPerson } from "../../models/person";
 
 export const combineDateAndTime = (date: Date, time: Date) => {
     const timeString = time.getHours() + ':' + time.getMinutes() + ':00';
@@ -10,6 +11,12 @@ export const combineDateAndTime = (date: Date, time: Date) => {
     const dateString = `${year}-${month}-${day}`;
 
     return new Date(dateString + ' ' + timeString);
+}
+
+export const setPersonProps = (person: IPerson) => {
+    person.birthDate = new Date(person.birthDate);
+
+    return person;
 }
 
 export const setActivityProps = (activity: IActivity, user: IUser) => {

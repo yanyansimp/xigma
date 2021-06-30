@@ -7,7 +7,7 @@ import { RootStoreContext } from '../../app/stores/rootStore';
 export const NavBar: React.FC = () => {
   const rootStore = useContext(RootStoreContext);
   const { user, logout } = rootStore.userStore;
-  const {openModal} = rootStore.modalStore;
+  // const {openModal} = rootStore.modalStore;
 
   return (
     
@@ -75,11 +75,6 @@ export const NavBar: React.FC = () => {
                   icon='user'
                 />
                 <Dropdown.Item onClick={logout} text='Logout' icon='power' />
-                <Dropdown.Item
-                 as={Link}
-                 to='/MembersList'
-                 text='Members List'
-                />
               </Dropdown.Menu>
             </Dropdown>
           </Menu.Item>
