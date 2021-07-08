@@ -12,10 +12,17 @@ namespace API.Controllers
     public class PersonsController : BaseController
     {
         [HttpGet]
-        public async Task<ActionResult<List<Person>>> List()
+        public async Task<ActionResult<List<Person>>> List(string keyWord)
         {
-            return await Mediator.Send(new List.Query());
+            return await Mediator.Send(new List.Query(keyWord));
         }
+
+        // [HttpGet("/{keyWord}/search")]
+        // public async Task<ActionResult<List<Person>>> Search(string keyWord)
+        // {
+        //     return await Mediator.Send(new Search.Query{KeyWord = keyWord});
+        // }
+
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Person>> Details(Guid id)

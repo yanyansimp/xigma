@@ -16,7 +16,6 @@ import {
   hasLengthGreaterThan,
 } from 'revalidate';
 import DateInput from '../../../app/common/form/DateInput';
-import { toJS } from 'mobx';
 
 interface DetailParams {
     id: string;
@@ -74,7 +73,6 @@ const MemberForm: React.FC<RouteComponentProps<DetailParams>> =
     const handleFinalFormSubmit = (values: any) => {
       const { birthDate, ...person } = values;
       person.birthDate = birthDate;
-
         if (!person.id) {
             let newPerson = {
                 ...person,
@@ -141,10 +139,9 @@ const MemberForm: React.FC<RouteComponentProps<DetailParams>> =
                       label="Birthdate"
                       placeholder="Date"
                       name="birthDate"
-                      value={person.birthDate!}
+                      value={person.birthDate}
                       component={DateInput}
                     />
-                    {console.log(typeof(person.birthDate))}
                     <Field
                       width={6}
                       label="Gender"

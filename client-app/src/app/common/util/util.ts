@@ -15,7 +15,6 @@ export const combineDateAndTime = (date: Date, time: Date) => {
 
 export const setPersonProps = (person: IPerson) => {
     person.birthDate = new Date(person.birthDate);
-
     return person;
 }
 

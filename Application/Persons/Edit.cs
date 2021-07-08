@@ -75,7 +75,11 @@ namespace Application.Persons
                 person.FirstName = request.FirstName ?? person.FirstName;
                 person.MiddleName = request.MiddleName ?? person.MiddleName;
                 person.BirthDate = request.BirthDate ?? person.BirthDate;
-                person.Suffix = request.Suffix ?? person.Suffix;
+
+                // Address this problem
+                // person.Suffix = request.Suffix ?? person.Suffix;
+                person.Suffix = request.Suffix;
+
                 person.Gender = request.Gender ?? person.Gender;
                 person.BloodType = request.BloodType ?? person.BloodType;
                 person.Chapter = request.Chapter ?? person.Chapter;

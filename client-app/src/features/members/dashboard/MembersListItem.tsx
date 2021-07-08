@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  Item,
-  Button,
-  Label,
-  Segment,
-  Icon,
-  Table,
-  Image,
-} from 'semantic-ui-react';
+import { Button, Table, Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
 import { IPerson } from '../../../app/models/person';
@@ -16,10 +8,8 @@ const MembersListItem: React.FC<{ person: IPerson }> = ({ person }) => {
   return (
     <Table.Row>
       <Table.Cell>{person.controlNumber}</Table.Cell>
-      <Table.Cell>
-        <Image avatar src={'/assets/user.png'} />
-      </Table.Cell>
       <Table.Cell singleLine>
+        <Image avatar src={'/assets/user.png'} /> {' '}
         {person.lastName}
         {', '}
         {person.firstName} {person.middleName.charAt(0)}

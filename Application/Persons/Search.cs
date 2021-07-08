@@ -18,7 +18,13 @@ namespace Application.Persons
     {
         public class Query : IRequest<List<Person>>
         {
+            // public Query(string keyWord)
+            // {
+            //     KeyWord = keyWord;
+            // }
+            
             public string KeyWord { get; set; }
+
         }
 
         public class Handler : IRequestHandler<Query, List<Person>>
@@ -34,16 +40,10 @@ namespace Application.Persons
             {
                 var persons = await _context.Persons
                                 .Where(x => 
-                                        x.Id.ToString() == request.KeyWord ||
-                                        x.ControlNumber == request.KeyWord ||
-                                        x.LastName == request.KeyWord ||
-                                        x.FirstName == request.KeyWord ||
-                                        x.MiddleName == request.KeyWord ||
-                                        x.Suffix == request.KeyWord ||
-                                        x.Chapter == request.KeyWord ||
-                                        x.BloodType == request.KeyWord ||
-                                        x.SchoolName == request.KeyWord
-                                ).ToListAsync();
+                                       x.LastName == request.KeyWord
+                                )
+                                .OrderBy(x => x.ControlNumber)
+                                .ToListAsync();
                 
                 if (persons == null)
                     throw new RestException(HttpStatusCode.NotFound, new { person = "Not Found" });
@@ -52,4 +52,5 @@ namespace Application.Persons
             }
         }
     }
+    
 }

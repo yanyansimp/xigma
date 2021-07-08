@@ -1,4 +1,4 @@
-import { action, observable, computed, runInAction, toJS } from 'mobx';
+import { action, observable, computed, runInAction, toJS, reaction } from 'mobx';
 import agent from '../api/agent';
 import { history } from '../..';
 import { IPerson } from '../models/person';
@@ -11,6 +11,14 @@ export default class PersonStore {
   rootStore: RootStore;
   constructor(rootStore: RootStore) {
     this.rootStore = rootStore;
+
+    reaction(
+      () => this.predicate.keys(),
+      () => {
+        this.personRegistry.clear();
+        this.loadPersons();
+      }
+    )
   }
 
   @observable personRegistry = new Map();
@@ -19,20 +27,33 @@ export default class PersonStore {
   @observable submitting = false;
   @observable target = '';
   @observable loading = false;
+  @observable predicate = new Map();
+
+  @action setPredicate = (predicate: string, value: string | Date) => {
+    this.predicate.clear()
+    if (predicate !== 'all') {
+      this.predicate.set(predicate, value);
+    } 
+    console.log(`${predicate} ${value}`);
+  }
+
+  @computed get axiosParams() {
+    const params = new URLSearchParams();
+    this.predicate.forEach((value, key) => {
+      console.log(`${key} ${value}`);
+      params.append(key, value);
+    });
+    return params;
+  }
 
   @computed get personsByName() {
     //Sort by Control Number
-    return Array.from(this.personRegistry.values()).sort(
-      (a,b) => (a > b ? 1 : -1)
+    return Array.from(this.personRegistry.values()).sort((a, b) =>
+      a - b
     );
   }
 
   personSortByControlNo(persons: IPerson[]) {
-    // const sortedPersons = persons.sort(
-    //   (a, b) => a.controlNumber.length - b.controlNumber.length
-    // );
-    // return sortedPersons;
-    // const sortedPersons = 
     return persons.sort();
   }
 
@@ -40,7 +61,10 @@ export default class PersonStore {
   @action loadPersons = async () => {
     this.loadingInitial = true;
     try {
-      const persons = await agent.Persons.list();
+      
+      console.log(this.axiosParams.values);
+
+      const persons = await agent.Persons.list(this.axiosParams);
       runInAction('loading members', () => {
         persons.forEach((person) => {
           this.personRegistry.set(person.id, person);
@@ -59,16 +83,16 @@ export default class PersonStore {
   @action loadPerson = async (id: string) => {
     let person = this.getPerson(id);
     if (person) {
-      this.person = person;
+      this.person = setPersonProps(person);
       return toJS(person);
     } else {
       this.loadingInitial = true;
       try {
         person = await agent.Persons.details(id);
         runInAction('getting member', () => {
-          console.log(person); // remove this later
           setPersonProps(person);
           this.person = person;
+          console.log(person);
           this.personRegistry.set(person.id, person);
           this.loadingInitial = false;
         });
@@ -102,7 +126,7 @@ export default class PersonStore {
         this.clearPerson();
       });
       toast.success('Successfully Saved.');
-      // history.push(`/persons/${person.id}`);
+      history.push('/members');
     } catch (error) {
       runInAction('creating membership error', () => {
         this.submitting = false;
