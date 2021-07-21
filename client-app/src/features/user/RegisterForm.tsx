@@ -67,7 +67,7 @@ const RegisterForm = () => {
             content="Register"
             fluid
           />
-          <pre>{JSON.stringify(form.getState(), null, 2)}</pre>
+          {/* <pre>{JSON.stringify(form.getState(), null, 2)}</pre> */}
         </Form>
       )}
     />

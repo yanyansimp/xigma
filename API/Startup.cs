@@ -28,6 +28,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using AutoMapper;
 using Infrastructure.Photos;
+using Application.Common;
 
 namespace API
 {
@@ -74,6 +75,12 @@ namespace API
             // Configuration for Identity
             var builder = services.AddIdentityCore<AppUser>();
             var identityBuilder = new IdentityBuilder(builder.UserType, builder.Services);
+
+            identityBuilder.AddUserManager<UserManager<AppUser>>();
+
+             // Configuration for Identity Roles/User Control - important
+            identityBuilder.AddRoles<IdentityRole>();
+
             identityBuilder.AddEntityFrameworkStores<DataContext>();
             identityBuilder.AddSignInManager<SignInManager<AppUser>>();
             
@@ -101,12 +108,16 @@ namespace API
                     };
                 });
 
+            // services.AddDbContext<DataContext>(options => )
+
             // JWT Generator
             services.AddScoped<IJwtGenerator, JwtGenerator>();
             // User Accessor
             services.AddScoped<IUserAccessor, UserAccessor>();
             // Photo Accessor
             services.AddScoped<IPhotoAccessor, PhotoAccessor>();
+            //
+            services.AddScoped<IStringExtensions, StringExtensions>();
 
             // Cloudinary Configuration
             services.Configure<CloudinarySettings>(Configuration.GetSection("Cloudinary"));

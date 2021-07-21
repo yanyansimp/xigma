@@ -3,8 +3,9 @@ import { IActivitiesEnvelope, IActivity } from '../models/activity';
 import { history } from '../..';
 import { toast } from 'react-toastify';
 import { IUser, IUserFormValues } from '../models/user';
-import { IProfile } from '../models/profile';
+import { IPhoto, IProfile } from '../models/profile';
 import { IPerson } from '../models/person';
+import { IChapter } from '../models/chapter';
 
 axios.defaults.baseURL = 'http://localhost:5000/api';
 
@@ -55,6 +56,14 @@ const requests = {
   put: (url: string, body: {}) =>
     axios.put(url, body).then(sleep(1000)).then(responseBody),
   del: (url: string) => axios.delete(url).then(sleep(1000)).then(responseBody),
+  postForm: (url: string, file: Blob, predicate: string) => {
+    let formData = new FormData();
+    formData.append('File', file);
+    formData.append('Predicate', predicate);
+    return axios.post(url, formData, {
+      headers: {'Content-type': 'multipart/form-data'}
+    }).then(responseBody)
+  },
 };
 
 const Activities = {
@@ -90,11 +99,20 @@ const User = {
 const Profiles = {
   get: (username: string): Promise<IProfile> =>
     requests.get(`/profiles/${username}`),
+  uploadPhoto: (photo: Blob, username: string): Promise<IPhoto> =>
+    requests.postForm(`/photos`, photo, username),
+  uploadSignature: (signature: Blob, username: string): Promise<IPhoto> =>
+    requests.postForm(`/photos/addSignature`, signature, username),
 };
+
+const Chapters = {
+  list: (): Promise<IChapter[]> => requests.get(`/chapters`),
+}
 
 export default {
   Activities,
   User,
   Profiles,
-  Persons
+  Persons,
+  Chapters
 };

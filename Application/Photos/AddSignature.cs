@@ -11,7 +11,7 @@ using Persistence;
 
 namespace Application.Photos
 {
-    public class Add
+    public class AddSignature
     {
         public class Command : IRequest<Photo>
         {
@@ -31,7 +31,7 @@ namespace Application.Photos
                 _context = context;
             }
 
-            public async Task<Photo> Handle(Command request,
+             public async Task<Photo> Handle(Command request,
                 CancellationToken cancellationToken)
             {
                 var photoUploadResult = _photoAccessor.AddPhoto(request.File);
@@ -39,7 +39,6 @@ namespace Application.Photos
                 var predicate = request.Predicate != "" ? request.Predicate : _userAccessor.GetCurrentUsername();
 
                 var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == predicate);
-                // _userAccessor.GetCurrentUsername());
 
                 var photo = new Photo
                 {
@@ -47,8 +46,8 @@ namespace Application.Photos
                     Id = photoUploadResult.PublicId
                 };
 
-                if (!user.Photos.Any(x => x.IsMain))
-                    photo.IsMain = true;
+                if (!user.Photos.Any(x => x.IsSignature))
+                    photo.IsSignature = true;
                 
                 user.Photos.Add(photo);
 
@@ -58,6 +57,8 @@ namespace Application.Photos
 
                 throw new Exception("Problem saving changes");
             }
+
+
         }
     }
 }

@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import { RootStore } from './rootStore';
 import { setActivityProps, createAttendee } from '../common/util/util';
 
-const LIMIT = 2;
+const LIMIT = 1;
 
 export default class ActivityStore {
   rootStore: RootStore;
@@ -31,7 +31,7 @@ export default class ActivityStore {
   @observable target = '';
   @observable loading = false;
   @observable activityCount = 0;
-  @observable page= 0;
+  @observable page = 0;
   @observable predicate = new Map();
 
   @action setPredicate = (predicate: string, value: string | Date) => {

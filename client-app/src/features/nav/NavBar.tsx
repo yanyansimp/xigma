@@ -1,13 +1,5 @@
 import React, { useContext } from 'react';
-import {
-  Menu,
-  Container,
-  Button,
-  Dropdown,
-  Image,
-  Label,
-  Input,
-} from 'semantic-ui-react';
+import { Menu, Container, Dropdown, Image, Input } from 'semantic-ui-react';
 import { observer } from 'mobx-react-lite';
 import { NavLink, Link } from 'react-router-dom';
 import { RootStoreContext } from '../../app/stores/rootStore';
@@ -33,21 +25,25 @@ export const NavBar: React.FC = () => {
           <label style={{ color: 'white' }}>XIANS SIGMA XI</label>
         </Menu.Item>
 
-        <Menu.Item
-          name="Activities"
-          as={NavLink}
-          to="/activities"
-          positive
-          content="Activities"
-        />
+        {user && (
+          <Menu.Item
+            name="Activities"
+            as={NavLink}
+            to="/activities"
+            positive
+            content="Activities"
+          />
+        )}
 
-        <Menu.Item
-          name="Members"
-          as={NavLink}
-          to="/members"
-          positive
-          content="Members"
-        />
+        {user && (
+          <Menu.Item
+            name="Members"
+            as={NavLink}
+            to="/members"
+            positive
+            content="Members"
+          />
+        )}
 
         {/* <Menu.Item
             as={NavLink}

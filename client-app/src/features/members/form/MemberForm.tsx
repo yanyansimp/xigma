@@ -12,8 +12,6 @@ import SelectInput from '../../../app/common/form/SelectInput';
 import {
   combineValidators,
   isRequired,
-  composeValidators,
-  hasLengthGreaterThan,
 } from 'revalidate';
 import DateInput from '../../../app/common/form/DateInput';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Table, Image, Placeholder } from 'semantic-ui-react';
+import { Table, Image, Placeholder } from 'semantic-ui-react';
 
 const MembersListItemPlaceHolder = () => {
   return (

@@ -6,6 +6,7 @@ import ProfileStore from "./profileStore";
 import ActivityStore from "./activityStore";
 import UserStore from "./userStore";
 import PersonStore from "./personStore";
+import ChapterStore from './chapterStore';
 
 configure({ enforceActions: 'always' });
 
@@ -16,6 +17,7 @@ export class RootStore {
     modalStore: ModalStore;
     profileStore: ProfileStore;
     personStore: PersonStore;
+    chapterStore: ChapterStore;
 
     constructor() {
         this.activityStore = new ActivityStore(this);
@@ -24,6 +26,7 @@ export class RootStore {
         this.modalStore = new ModalStore(this);
         this.profileStore = new ProfileStore(this);
         this.personStore = new PersonStore(this);
+        this.chapterStore = new ChapterStore(this);
     }
 
 }

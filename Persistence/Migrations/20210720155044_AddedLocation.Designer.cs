@@ -9,8 +9,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210505181455_InitialMigrate")]
-    partial class InitialMigrate
+    [Migration("20210720155044_AddedLocation")]
+    partial class AddedLocation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -47,10 +47,34 @@ namespace Persistence.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
+                    b.Property<string>("Address");
+
                     b.Property<string>("Bio");
+
+                    b.Property<DateTime>("BirthDate");
+
+                    b.Property<string>("BloodType");
+
+                    b.Property<string>("Chapter");
+
+                    b.Property<Guid?>("ChapterId");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
+
+                    b.Property<string>("ContactNumber");
+
+                    b.Property<string>("ContactPerson");
+
+                    b.Property<string>("ContactPersonNumber");
+
+                    b.Property<string>("ControlNumber");
+
+                    b.Property<DateTime?>("CreatedAt");
+
+                    b.Property<string>("DateSurvived");
+
+                    b.Property<DateTime?>("DeletedAt");
 
                     b.Property<string>("DisplayName");
 
@@ -59,9 +83,19 @@ namespace Persistence.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("Gender");
+
+                    b.Property<string>("GrandChancellor");
+
+                    b.Property<string>("LastName");
+
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
+
+                    b.Property<string>("MiddleName");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);
@@ -75,14 +109,24 @@ namespace Persistence.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
+                    b.Property<string>("RegionalChancellor");
+
+                    b.Property<string>("SchoolName");
+
                     b.Property<string>("SecurityStamp");
 
+                    b.Property<string>("Suffix");
+
                     b.Property<bool>("TwoFactorEnabled");
+
+                    b.Property<DateTime?>("UpdatedAt");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ChapterId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
@@ -92,6 +136,32 @@ namespace Persistence.Migrations
                         .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("Domain.Chapter", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Code");
+
+                    b.Property<DateTime?>("CreatedAt");
+
+                    b.Property<DateTime?>("DeletedAt");
+
+                    b.Property<string>("GrandChancellor");
+
+                    b.Property<string>("Location");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("SequenceId");
+
+                    b.Property<DateTime?>("UpdatedAt");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Chapters");
                 });
 
             modelBuilder.Entity("Domain.Person", b =>
@@ -150,6 +220,8 @@ namespace Persistence.Migrations
                     b.Property<string>("AppUserId");
 
                     b.Property<bool>("IsMain");
+
+                    b.Property<bool>("IsSignature");
 
                     b.Property<string>("Url");
 
@@ -311,6 +383,13 @@ namespace Persistence.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("Domain.AppUser", b =>
+                {
+                    b.HasOne("Domain.Chapter")
+                        .WithMany("AppUsers")
+                        .HasForeignKey("ChapterId");
                 });
 
             modelBuilder.Entity("Domain.Person", b =>

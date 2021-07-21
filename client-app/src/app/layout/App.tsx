@@ -25,6 +25,8 @@ import MemberForm from '../../features/members/form/MemberForm';
 import MembersList from '../../features/members/dashboard/MembersList';
 import { MemberDashboard } from '../../features/members/dashboard/MemberDashboard';
 import MemberDetails from '../../features/members/details/MemberDetails';
+import RegistrationForm from '../../features/user/RegistrationForm';
+import Success from './Success';
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   const rootStore = useContext(RootStoreContext);
@@ -45,6 +47,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
     <Fragment>
       <ModalContainer />
       <Route exact path="/" component={HomePage} />
+
       <ToastContainer position="bottom-right" />
       <Route
         path={'/(.+)'}
@@ -53,6 +56,14 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
             <NavBar />
             <Container style={{ marginTop: '8em' }}>
               <Switch>
+                <Route exact path="/success" component={Success} />
+                
+                <Route
+                  exact
+                  path="/registration"
+                  component={RegistrationForm}
+                />
+
                 <Route exact path="/activities" component={ActivityDashboard} />
                 <Route path="/activities/:id" component={ActivityDetails} />
 

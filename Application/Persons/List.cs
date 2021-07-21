@@ -54,7 +54,8 @@ namespace Application.Persons
                             x.Suffix.ToLower() == request.KeyWord.ToLower() ||
                             x.Chapter.ToLower() == request.KeyWord.ToLower() ||
                             x.BloodType.ToLower() == request.KeyWord.ToLower() ||
-                            x.SchoolName.ToLower() == request.KeyWord.ToLower()
+                            x.SchoolName.ToLower() == request.KeyWord.ToLower() ||
+                            x.Chapter.ToLower() == request.KeyWord.ToLower()
                         );
                 }
 

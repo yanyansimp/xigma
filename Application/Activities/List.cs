@@ -74,7 +74,7 @@ namespace Application.Activities
 
                 var activities = await queryable
                     .Skip(request.Offset ?? 0)
-                    .Take(request.Limit ?? 3)
+                    .Take(request.Limit ?? 1)
                     .ToListAsync();
 
                 return new ActivitiesEnvelope

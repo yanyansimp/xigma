@@ -61,9 +61,6 @@ export default class PersonStore {
   @action loadPersons = async () => {
     this.loadingInitial = true;
     try {
-      
-      console.log(this.axiosParams.values);
-
       const persons = await agent.Persons.list(this.axiosParams);
       runInAction('loading members', () => {
         persons.forEach((person) => {

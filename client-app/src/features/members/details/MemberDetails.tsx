@@ -1,8 +1,7 @@
-import React, { useContext, useEffect } from 'react';
-import { Grid, Item, Label, Segment } from 'semantic-ui-react';
+import React from 'react';
+import { Item, Segment } from 'semantic-ui-react';
 import { RouteComponentProps } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
-import { RootStoreContext } from '../../../app/stores/rootStore';
 
 interface RouteParams {
   id: string;
@@ -11,8 +10,6 @@ interface RouteParams {
 interface IProps extends RouteComponentProps<RouteParams> {}
 
 const MemberDetails: React.FC<IProps> = ({match}) => {
-  const rootStore = useContext(RootStoreContext);
-  const { loadPerson } = rootStore.personStore;
 
   // useEffect(() => {
   //   loadPerson(match.params.id)

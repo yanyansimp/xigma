@@ -52,6 +52,9 @@ namespace Application.User
 
                 var result = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
 
+                if (result.IsLockedOut)
+                    throw new RestException(HttpStatusCode.BadRequest, new { Error = "Account locked. Please contact Administrator" });
+
                 if (result.Succeeded)
                 {
                     return new User
