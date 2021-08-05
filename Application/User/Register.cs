@@ -50,7 +50,8 @@ namespace Application.User
                 // RuleFor(x => x.DisplayName).NotEmpty();
                 // RuleFor(x => x.Username).NotEmpty();
                 RuleFor(x => x.Email).NotEmpty().EmailAddress();
-                RuleFor(x => x.Password).Password();
+                RuleFor(x => x.Password).NotEmpty();
+                // RuleFor(x => x.Password).Password();
             }
         }
 
@@ -73,15 +74,15 @@ namespace Application.User
             public async Task<User> Handle(Command request,
                 CancellationToken cancellationToken)
             {
-                string controlNumber = "";
+                string controlNumber = "", username = "";
 
-                string username = string.Concat($"{request.FirstName}.{request.LastName}".Where(c => !Char.IsWhiteSpace(c))).ToLower();
-
+                // Check if email is already exists
                 if (await _context.Users.Where(x => x.Email == request.Email).AnyAsync())
                     throw new RestException(HttpStatusCode.BadRequest, new { Email = "Email already exists" });
 
-                if (await _context.Users.Where(x => x.UserName == username).AnyAsync())
-                    throw new RestException(HttpStatusCode.BadRequest, new { Username = "Username already exists" });
+                // Check if username is already exists
+                // if (await _context.Users.Where(x => x.UserName == username).AnyAsync())
+                //     throw new RestException(HttpStatusCode.BadRequest, new { Username = "Username already exists" });
 
                 var chapter = await _context.Chapters.SingleOrDefaultAsync(x => x.Name == request.Chapter);
 
@@ -91,6 +92,12 @@ namespace Application.User
                 {
                     controlNumber = _stringUtils.ControlNumberBuilder(chapter.Code, chapter.SequenceId, request.DateSurvived,
                          _stringUtils.UserSequenceBuilder(String.IsNullOrEmpty(lastUser.ControlNumber) ? "" : lastUser.ControlNumber));
+                }
+
+                if (await _context.Users.Where(x => x.UserName == username).AnyAsync())
+                {
+                    username = string.Concat($"{request.FirstName}.{request.LastName}{Int32.Parse(controlNumber.Split('-')[1].Substring(2)).ToString()}"
+                        .Where(c => !Char.IsWhiteSpace(c))).ToLower();
                 }
 
                 var user = new AppUser
