@@ -12,8 +12,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: royalblue;
-  /* height: 100vh; */
+  background-image: linear-gradient(
+    135deg, rgba(112,14,22,1) 0%, 
+    rgba(219,18,18,0.6867121848739496) 48%, 
+    rgba(255,115,0,0.7987570028011204) 100%
+  ) !important;
+  height: 100vh;
 }
 
 .masthead .ui.menu .ui.button,
@@ -58,6 +62,27 @@ body {
     border-radius: 8px;
     margin-top: 20px;
     
+}
+
+/* Signature Canvas */
+
+.signatureCanvas {
+  flex-grow: 1;
+}
+
+.ui.compact.buttons.buttonGroup {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+
+
+@media all and (max-width: 500px) {
+  .signatureCanvas {
+    min-width: 182px;
+    min-height: 200px;
+  }
 }
 
 

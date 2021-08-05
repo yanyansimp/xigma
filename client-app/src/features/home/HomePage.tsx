@@ -13,14 +13,22 @@ import LoginForm from '../user/LoginForm';
 import RegisterForm from '../user/RegisterForm';
 
 const HomePage = () => {
+  const token = window.localStorage.getItem('jwt');
   const rootStore = useContext(RootStoreContext);
   const { isLoggedIn, user } = rootStore.userStore;
   const {openModal} = rootStore.modalStore;
   return (
-    
     <Segment inverted textAlign="center" vertical className="masthead">
-      <div></div>
       <Container text>
+        <Header as="h1" inverted>
+          <Image
+            size="massive"
+            src="/assets/sigmalogoo.png"
+            alt="logo"
+            style={{ marginBottom: 12, width: '100px', height: '100px' }}
+          />
+          Sigma Xi
+        </Header>
         {isLoggedIn && user ? (
           <Fragment>
             <Header
@@ -33,27 +41,27 @@ const HomePage = () => {
             </Button>
           </Fragment>
         ) : (
-          <body className="log2">
           <Fragment>
-            
-             <Header as="h2" inverted content="" />
-            <Image class="ui mini image"
-            src="/assets/sigmalogoo.png"
-            alt="logo"
-            centered
-            style={{ marginBottom: 12, width: "200px",}}
-          />
-            <Button onClick={() => openModal(<LoginForm />)} size="huge" inverted>
+            <Header as="h2" inverted>
+              Welcome to Sigma Xi Portal
+            </Header>
+            <Button
+              onClick={() => openModal(<LoginForm />)}
+              size="huge"
+              inverted
+            >
               Login
             </Button>
-            {/* <Button onClick={() => openModal(<RegisterForm />)} size="huge" inverted
-            style={{backgroundcolor: <div id="fffff"></div>,}}
+            <Button
+              // onClick={() => openModal(<RegisterForm />)}
+              as={Link}
+              to="/registration"
+              size="huge"
+              inverted
             >
               Register
-            </Button> */}
-            
+            </Button>
           </Fragment>
-          </body>
         )}
       </Container>
     </Segment>

@@ -6,7 +6,7 @@ import { RootStoreContext } from '../../app/stores/rootStore';
 const ProfilePhotos = () => {
     const rootStore = useContext(RootStoreContext);
     const {profile, isCurrentUser, uploadPhoto, uploadingPhoto} = rootStore.profileStore;
-    const [addPhotoMode, setAddPhotoMode] = useState(true);
+    const [addPhotoMode, setAddPhotoMode] = useState(false);
 
     const handleUploadImage = (photo: Blob) => {
         // uploadPhoto(photo).then(() => setAddPhotoMode(false));

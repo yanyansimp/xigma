@@ -7,14 +7,17 @@ const sigPadStyles = {
   border: 'dashed 3px',
   borderColor: '#eee',
   borderRadius: '5px',
-  height: '200px',
   padding: '3px',
   marginBottom: '3px',
+  display: 'flex'
 };
 
 const SignatureUploadWidget = () => {
   const rootStore = useContext(RootStoreContext);
   const { setSignature } = rootStore.userStore;
+
+  const [uploadSignature, setUploadSignature] = useState(false);
+  const [writeSignature, setWriteSignature] = useState(false);
 
   const [clearButton, setClearButton] = useState(false);
 
@@ -30,31 +33,57 @@ const SignatureUploadWidget = () => {
   return (
     <Fragment>
       <Grid>
-        <Grid.Column width={8}>
-          <Header color="teal" sub content="Add signature" />
-          <div style={sigPadStyles}>
-            <SignatureCanvas
-              ref={sigCanvas}
-              canvasProps={{
-                className: 'signatureCanvas',
-                width: '370px',
-                height: '190px',
-              }}
-              onEnd={() => getSignature()}
-            />
-          </div>
-          { clearButton && 
-           <Button
+        <Grid.Column width={16}>
+          <Button.Group compact className="buttonGroup">
+            <Button
               type="button"
-                  floated="left"
-                  icon="close"
-                  content="Clear"
-                  onClick={() => {
-                      sigCanvas.current.clear();
-                      setClearButton(false);
+              content="Upload Signature"
+              onClick={() => {
+                setUploadSignature(true);
+                setWriteSignature(false);
+                
+              }}
+            />
+            <Button.Or />
+            <Button
+              type="button"
+              content="Write Signature"
+              onClick={() => {
+                setWriteSignature(true);
+                setUploadSignature(false);
+              }}
+            />
+          </Button.Group>
+
+          {uploadSignature && <h1>Upload Signature</h1>}
+
+          {writeSignature && (
+            <div>
+              <Header color="teal" sub content="Add signature" />
+              <div style={sigPadStyles}>
+                <SignatureCanvas
+                  ref={sigCanvas}
+                  canvasProps={{
+                    className: 'signatureCanvas',
                   }}
-              />
-          }
+                  onEnd={() => getSignature()}
+                />
+              </div>
+            </div>
+          )}
+
+          {clearButton && (
+            <Button
+              type="button"
+              floated="left"
+              icon="close"
+              content="Clear"
+              onClick={() => {
+                sigCanvas.current.clear();
+                setClearButton(false);
+              }}
+            />
+          )}
         </Grid.Column>
       </Grid>
     </Fragment>

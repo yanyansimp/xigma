@@ -27,6 +27,7 @@ import { MemberDashboard } from '../../features/members/dashboard/MemberDashboar
 import MemberDetails from '../../features/members/details/MemberDetails';
 import RegistrationForm from '../../features/user/RegistrationForm';
 import Success from './Success';
+import PrivateRoute from './PrivateRoute';
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   const rootStore = useContext(RootStoreContext);
@@ -45,10 +46,9 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
 
   return (
     <Fragment>
+      <ToastContainer position="bottom-right" />
       <ModalContainer />
       <Route exact path="/" component={HomePage} />
-
-      <ToastContainer position="bottom-right" />
       <Route
         path={'/(.+)'}
         render={() => (
@@ -56,28 +56,37 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
             <NavBar />
             <Container style={{ marginTop: '8em' }}>
               <Switch>
-                <Route exact path="/success" component={Success} />
-                
                 <Route
                   exact
                   path="/registration"
                   component={RegistrationForm}
                 />
 
-                <Route exact path="/activities" component={ActivityDashboard} />
-                <Route path="/activities/:id" component={ActivityDetails} />
+                <PrivateRoute
+                  exact
+                  path="/activities"
+                  component={ActivityDashboard}
+                />
+                <PrivateRoute
+                  path="/activities/:id"
+                  component={ActivityDetails}
+                />
 
                 {/* <Route exact path="/members" component={MemberDashboard} /> */}
 
-                <Route
+                <PrivateRoute
                   key={location.key}
                   path="/homeAdmin1"
                   component={HomeAdmin1}
                 />
 
-                <Route exact path="/members" component={MemberDashboard} />
+                <PrivateRoute
+                  exact
+                  path="/members"
+                  component={MemberDashboard}
+                />
 
-                <Route
+                <PrivateRoute
                   key={location.key}
                   path="/member/details"
                   component={MemberDetails}
@@ -99,6 +108,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
 
                 {/* <Route path='/login' component={LoginForm} /> Will cater this later */}
 
+                <Route exact path="/success" component={Success} />
                 <Route component={NotFound} />
               </Switch>
             </Container>

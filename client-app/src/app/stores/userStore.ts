@@ -13,6 +13,7 @@ export default class UserStore {
 
   @observable user: IUser | null = null;
   @observable submitting = false;
+  @observable status = '';
 
   /// Image Upload
   @observable image: Blob | null = null;
@@ -22,11 +23,18 @@ export default class UserStore {
   /// Signature Upload
   @observable signature: Blob | null = null;
   @observable fileSignature: any[] = [];
+  @observable uploadingSignature = false;
 
-  @action setSignature = (file: Blob) => {
+  /// Setting Signature
+  @action setFilesSignature = (files: object[]) => {
+    this.fileSignature = files;
+  }
+
+  @action setSignature = (file: Blob | null) => {
     this.signature = file;
   }
 
+  /// Setting Image
   @action setFiles = (files: object[]) => {
     this.files = files;
   };
@@ -58,24 +66,34 @@ export default class UserStore {
   @action register = async (values: IUserFormValues) => {
     this.submitting = true;
     try {
+
+      runInAction(() => {
+        this.status = 'Uploading Details ...';
+      });
       const user = await agent.User.register(values);
+     
 
       // Image Upload
       if (this.image !== null) {
-        const img = await agent.Profiles.uploadPhoto(this.image, user.username);
+        runInAction(() => {
+          this.status = 'Uploading Image ...';
+        });
+        await agent.Profiles.uploadPhoto(this.image, user.username);
       }
 
       // Signature Upload
       if (this.signature !== null) {
-        const sig = await agent.Profiles.uploadSignature(
-          this.signature,
-          user.username
-        );
+        runInAction(() => {
+          this.status = 'Uploading Signature ...';
+        });
+       await agent.Profiles.uploadSignature(this.signature, user.username);
       }
 
       runInAction(() => {
         this.submitting = false;
+        this.status = '';
         this.setFiles([]);
+        this.setFilesSignature([]);
       })
       // this.rootStore.commonStore.setToken(user.token);
       // this.rootStore.modalStore.closeModal();
@@ -83,6 +101,7 @@ export default class UserStore {
     } catch (error) {
       runInAction(() => {
         this.submitting = false;
+        this.status = '';
       });
       toast.error('Problem Saving Changes. Try again later.');    
       throw error;

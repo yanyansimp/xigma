@@ -9,9 +9,9 @@ import DateInput from '../../app/common/form/DateInput';
 import ErrorMessage from '../../app/common/form/ErrorMessage';
 import SelectInput from '../../app/common/form/SelectInput';
 import TextInput from '../../app/common/form/TextInput';
-import SignatureUploadWidget from '../../app/common/signatureUpload/SignatureUploadWidget';
 import { RootStoreContext } from '../../app/stores/rootStore';
 import PhotoUpload from './photoUpload/photo/PhotoUpload';
+import SignatureUpload from './photoUpload/signature/SignatureUpload';
 
 const genderOptions = [
   { key: 'm', text: 'Male', value: 'male' },
@@ -47,7 +47,7 @@ const validate = combineValidators({
 
 const RegistrationForm = () => {
   const rootStore = useContext(RootStoreContext);
-  const { register, submitting } = rootStore.userStore;
+  const { register, submitting, status } = rootStore.userStore;
   const { loadChapters, chapterRegistry} = rootStore.chapterStore;
 
   const handleFinalFormSubmit = (values: any) => {
@@ -72,7 +72,7 @@ const RegistrationForm = () => {
       {/* </Label> */}
       {/* </Grid.Column> */}
 
-      <Grid.Column width={12}>
+      <Grid.Column mobile={16} computer={12}>
         <FinalForm
           onSubmit={handleFinalFormSubmit}
           validate={validate}
@@ -221,14 +221,19 @@ const RegistrationForm = () => {
                   <ErrorMessage error={submitError} />
                 )}
               </Segment>
+
               <Segment>
                 <h3>Photo</h3>
                 <PhotoUpload />
               </Segment>
+
               <Segment>
                 <h3>Signature</h3>
-                <SignatureUploadWidget />
+                <SignatureUpload />
               </Segment>
+
+              {submitting && <h4>{status}</h4>}
+
               <Button
                 loading={submitting}
                 disabled={(invalid && !dirtySinceLastSubmit) || pristine}

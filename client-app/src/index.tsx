@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import 'react-toastify/dist/ReactToastify.min.css';
 import 'react-widgets/dist/css/react-widgets.css';
 import './app/layout/styles.css';
+import 'semantic-ui-css/semantic.min.css';
 import App from './app/layout/App';
 import * as serviceWorker from './serviceWorker';
 import { Router } from 'react-router-dom';

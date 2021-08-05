@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import { RootStore } from './rootStore';
 import { setActivityProps, createAttendee } from '../common/util/util';
 
-const LIMIT = 1;
+const LIMIT = 3;
 
 export default class ActivityStore {
   rootStore: RootStore;
